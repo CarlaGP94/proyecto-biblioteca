@@ -14,7 +14,8 @@ public class ProyectoBibliotecaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		HomePage homePage = new HomePage();
-		homePage.showMenu();
+
+//		HomePage homePage = new HomePage();
+//		homePage.showMenu();
 	}
 }

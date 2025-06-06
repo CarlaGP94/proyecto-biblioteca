@@ -1,6 +1,6 @@
 package com.aluracursos.proyecto_biblioteca.homepage;
 
-import com.aluracursos.proyecto_biblioteca.model.Books;
+import com.aluracursos.proyecto_biblioteca.model.BooksData;
 import com.aluracursos.proyecto_biblioteca.model.GeneralData;
 import com.aluracursos.proyecto_biblioteca.service.APIConsumption;
 import com.aluracursos.proyecto_biblioteca.service.ConvertsData;
@@ -30,7 +30,7 @@ public class HomePage {
         // Top 10 de los más descargados
         System.out.println("Top 10 de los libros más descargados:");
         data.booksList().stream()
-                .sorted(Comparator.comparing(Books::downloadCount).reversed())
+                .sorted(Comparator.comparing(BooksData::downloadCount).reversed())
                 .limit(10)
                 .map(b -> b.title().toUpperCase())
                 .forEach(System.out::println);
@@ -39,7 +39,7 @@ public class HomePage {
         System.out.println("\nIngresa el nombre del libro:");
         var userBook = keyboard.next();
 
-        Optional<Books> foundBook = data.booksList().stream()
+        Optional<BooksData> foundBook = data.booksList().stream()
                 .filter(b -> b.title().toUpperCase().contains(userBook.toUpperCase()))
                 .findFirst();
 
@@ -52,7 +52,7 @@ public class HomePage {
         // Estadística
         DoubleSummaryStatistics est = data.booksList().stream()
                 .filter(b -> b.downloadCount() > 0.0)
-                .collect(Collectors.summarizingDouble(Books::downloadCount));
+                .collect(Collectors.summarizingDouble(BooksData::downloadCount));
         System.out.println("Promedio de descargas: " + est.getAverage());
     }
 
